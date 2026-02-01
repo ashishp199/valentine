@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+/* Floating hearts */
+.hearts::before, .hearts::after {
+  content: "💗 💖 💘 💕 💓";
+  position: absolute;
+  width: 100%;
+  left: 0;
+  animation: float 8s linear infinite;
+  font-size: 24px;
+  opacity: 0.4;
+}
+.hearts::after { animation-delay: 4s; }
+
+@keyframes float {
+  0% { top: 100%; }
+  100% { top: -20%; }
+}
+
+/* Card */
+.card {
+  background: rgba(0,0,0,0.25);
+  padding: 30px;
+  border-radius: 20px;
+  width: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+.photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-bottom: 15px;
+}
+
+h1 { font-size: 26px; margin-bottom: 10px; }
+p { font-size: 16px; margin-bottom: 25px; }
+
+button {
+  font-size: 16px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yes {
+  background: #2ecc71;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+#no {
+  background: #e74c3c;
+  color: white;
+  position: absolute;
+}
+
+/* Celebration */
+.celebrate {
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:linear-gradient(135deg,#ff4d6d,#ff758f);
+  color:white;
+  font-family:Arial;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts"></div>
+
+<audio id="bgm" loop preload="auto">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <img src="love.jpg" class="photo" alt="Love">
+  <h1>Hey Sonia 💕</h1>
+  <p>
+    From my heart to this screen…<br>
+    Will you be my Valentine? 🌹
+  </p>
+  <button id="yes" onclick="sayYes()">Yes 💖</button>
+  <button id="no" onmouseover="moveNo()">No 😅</button>
+</div>
+
+<script>
+function sayYes() {
+  const music = document.getElementById("bgm");
+  music.volume = 0.8;
+  music.play().catch(() => {});
+
+  document.body.innerHTML = `
+  <div class="celebrate">
+    <h1>YAYYYY 💘🎉</h1>
+    <p>Our love is straight out of a Taylor Swift song 🥹🎶</p>
+    <div style="font-size:40px;">🎊 💖 🎊 💕 🎊</div>
+  </div>`;
+}
+
+function moveNo() {
+  const button = document.getElementById("no");
+  const x = Math.random() * (window.innerWidth - 150);
+  const y = Math.random() * (window.innerHeight - 100);
+  button.style.left = x + "px";
+  button.style.top = y + "px";
+}
+</script>
+
+</body>
+</html>
